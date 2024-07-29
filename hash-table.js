@@ -27,11 +27,19 @@ class HashTable {
   }
 
   insertNoCollisions(key, value) {
-    // Your code here
+    let newPair = new KeyValuePair(key, value);
+    let bucket = this.hashMod(key)
+
+    if (this.data[bucket] !== null || this.data[bucket] === newPair){
+      throw Error("hash collision or same key/value pair already exists!");
+    }
+
+    this.data[bucket] = newPair;
+    this.count++;
   }
 
   insertWithHashCollisions(key, value) {
-    // Your code here
+
   }
 
   insert(key, value) {
