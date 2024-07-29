@@ -11,15 +11,19 @@ class KeyValuePair {
 class HashTable {
 
   constructor(numBuckets = 4) {
-    // Your code here
+    this.count = 0;
+    this.capacity = numBuckets;
+    this.data = new Array(this.capacity).fill(null);
   }
 
   hash(key) {
-    // Your code here
+    const hashed = sha256(key).slice(0, 8);
+
+    return parseInt(hashed, 16);
   }
 
   hashMod(key) {
-    // Your code here
+    return this.hash(key) % this.capacity;
   }
 
   insertNoCollisions(key, value) {
