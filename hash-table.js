@@ -51,7 +51,26 @@ class HashTable {
   }
 
   insert(key, value) {
-    // Your code here
+    let newPair = new KeyValuePair(key, value);
+    let bucket = this.hashMod(key);
+    let currentBucket = this.data[bucket];
+
+    if (currentBucket !== null){
+      if (currentBucket.key === key){
+        this.data[bucket].value = value;
+        return;
+      }
+
+      if (currentBucket.next !== null && currentBucket.next.key === key){
+        this.data[bucket].next.value = value;
+        return;
+      }
+
+      newPair.next = currentBucket;
+    }
+
+    this.data[bucket] = newPair;
+    this.count++;
   }
 
 }
