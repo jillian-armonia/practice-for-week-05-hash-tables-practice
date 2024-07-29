@@ -39,7 +39,15 @@ class HashTable {
   }
 
   insertWithHashCollisions(key, value) {
+    let newPair = new KeyValuePair(key, value);
+    let bucket = this.hashMod(key)
 
+    if (this.data[bucket] !== null){
+      newPair.next = this.data[bucket];
+    }
+
+    this.data[bucket] = newPair;
+    this.count++;
   }
 
   insert(key, value) {
